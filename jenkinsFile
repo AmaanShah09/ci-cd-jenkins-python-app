@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from GitHub
+                checkout scmGit(branches: [[name: 'main']], 
+                                extensions: [], 
+                                userRemoteConfigs: [[url: 'https://github.com/AmaanShah09/ci-cd-jenkins-python-app.git']])
+            }
+        }
+        stage('Build') {
+            steps {
+                // Run the Python application
+                sh 'python3 app.py'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Run unit tests using pytest
+                sh 'python3 -m pytest'
+            }
+        }
+    }
+}
