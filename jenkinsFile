@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                // Run the Python application
+                // Run the Python application code
                 sh 'python3 app.py'
             }
         }
